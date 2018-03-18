@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Grid, Row } from 'react-bootstrap';
+// import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import { Route } from 'react-router-dom';
 import Welcome from './Welcome/Welcome';
@@ -15,16 +17,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">{this.state.title}</h1>
-          
+      <Grid fluid>
+        <Row>
+          <div className="App-header">{this.state.title}</div>
+        </Row>
+        <Row>
           {/* We rended diffrent component based on the path */}
           <Route exact path="/" component={Welcome}/>
           <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
-        
-        </header>
-      </div>
+        </Row>
+      </Grid>
     );
   }
 }

@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
+import { Col } from 'react-bootstrap';
 import './Sidebar.css';
 class Sidebar extends Component {
 
   constructor(props) {
     super(props)
-    
+
     // we put on state the properties we want to use and modify in the component
     this.state = {
       numberOfGuests: this.props.model.getNumberOfGuests()
     }
   }
 
-  // this methods is called by React lifecycle when the 
+  // this methods is called by React lifecycle when the
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to setup model observer
   componentDidMount() {
@@ -39,14 +40,14 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div className="Sidebar">
+      <Col sm={3} className="Sidebar">
         <h3>This is the sidebar</h3>
         <p>
         People: <input value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
         <br/>
         Total number of guests: {this.state.numberOfGuests}
         </p>
-      </div>
+      </Col>
     );
   }
 }

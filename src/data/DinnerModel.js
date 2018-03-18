@@ -1,20 +1,19 @@
 const httpOptions = {
-  headers: {'X-Mashape-Key': 'YOUR_API_KEY'}
+  headers: {'X-Mashape-Key': 'Qu9grxVNWpmshA4Kl9pTwyiJxVGUp1lKzrZjsnghQMkFkfA4LB'}
 };
 
 const DinnerModel = function () {
-
   let numberOfGuests = 4;
   let observers = [];
 
+  // Sets the number of guests. The number of guests cannot go below 1.
   this.setNumberOfGuests = function (num) {
     numberOfGuests = num;
     notifyObservers();
   };
 
-  this.getNumberOfGuests = function () {
-    return numberOfGuests;
-  };
+  // Retrieve the number of guests.
+  this.getNumberOfGuests = () => numberOfGuests;
 
   // API Calls
 
@@ -24,7 +23,7 @@ const DinnerModel = function () {
       .then(processResponse)
       .catch(handleError)
   }
-  
+
   // API Helper methods
 
   const processResponse = function (response) {
@@ -33,7 +32,7 @@ const DinnerModel = function () {
     }
     throw response;
   }
-  
+
   const handleError = function (error) {
     if (error.json) {
       error.json().then(error => {

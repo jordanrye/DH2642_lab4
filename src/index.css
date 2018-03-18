@@ -1,0 +1,30 @@
+@import url(https://fonts.googleapis.com/css?family=Handlee);
+
+* {
+	padding: 0;
+	margin: 0;
+}
+html, body {
+	background-color: #EDF1F5;
+    height: 100%;
+	width: 100%;
+	/* font-family: "Comic Sans MS", cursive, sans-serif; */
+	font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #2F323E;
+	text-align: justify;
+	overflow-x: hidden;
+}
+img {
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+	margin: auto;
+}
+h3 {
+	margin: 0 0 2rem 0;
+	text-align: left;
+}
+.container-fluid {
+	padding: 0px;
+	margin: 0px;
+}
