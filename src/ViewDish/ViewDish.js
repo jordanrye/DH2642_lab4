@@ -6,11 +6,10 @@ import DishInfo from '../DishInfo/DishInfo';
 
 class ViewDish extends Component {
   render() {
-	{console.log(this.props);}
     return (
       <Col sm={12} className="ViewDish">
         <Sidebar model={this.props.model}/>
-        <DishInfo dishId={this.props.match.params.dishId}/>
+        <DishInfo dishId={this.props.match.params.dishId} model={this.props.model}/>
       </Col>
     );
   }
