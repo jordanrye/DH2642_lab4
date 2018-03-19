@@ -51,7 +51,7 @@ class Dishes extends Component {
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
           <Col sm={2} className="SearchResultsWrapper">
-            <Link to={"/dish/:" + dish.id}>
+            <Link to={"/dish/" + dish.id}>
               <Panel onClick={/*toggleDishDetails(dish.id)*/ true} className="SearchResults">
                 <Panel.Body>
                   <div className="crop">

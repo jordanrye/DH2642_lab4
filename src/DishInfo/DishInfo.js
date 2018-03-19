@@ -51,37 +51,7 @@ class DishInfo extends Component {
 
     return (
       <Col sm={9} smOffset={3} className="DishInfo">
-        <div className="SearchForm">
-          <h3>Find a dish</h3>
-          <Row>
-            <FormGroup className="FormGroup">
-              <Col xs={12} sm={5} md={4} lg={3} className="FormField">
-                <FormControl id="search-keywords" type="text" placeholder="Enter key words"/>
-              </Col>
-              <Col xs={12} sm={5} md={4} lg={3} className="FormField">
-                <FormControl id="search-category" componentClass="select">
-                  <option>Main course</option>
-                  <option>Side dish</option>
-                  <option>Dessert</option>
-                  <option>Appetizer</option>
-                  <option>Salad</option>
-                  <option>Bread</option>
-                  <option>Breakfast</option>
-                  <option>Soup</option>
-                  <option>Beverage</option>
-                  <option>Sauce</option>
-                  <option>Drink</option>
-                </FormControl>
-              </Col>
-              <Col xs={12} sm={2} md={4} lg={2} className="FormField">
-                <Button id="search-update" type="submit" className="btn btn-primary">Search</Button>
-              </Col>
-            </FormGroup>
-          </Row>
-        </div>
-        <ul>
-          {dishesList}
-        </ul>
+        {dishesList}
       </Col>
     );
   }
