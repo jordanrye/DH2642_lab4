@@ -9,16 +9,6 @@ class Overview extends Component {
 
     // we put on state the properties we want to use and modify in the component
     this.state = {
-      status: 'INITIAL',
-      numberOfGuests: this.props.model.getNumberOfGuests(),
-      totalMenuPrice: this.props.model.getTotalMenuPrice(),
-      selectedDishes: this.props.model.getSelectedDishes()
-    };
-  }
-
-  componentDidMount = () => {
-    this.state = {
-      status: 'LOADED',
       numberOfGuests: this.props.model.getNumberOfGuests(),
       totalMenuPrice: this.props.model.getTotalMenuPrice(),
       selectedDishes: this.props.model.getSelectedDishes()
@@ -26,29 +16,22 @@ class Overview extends Component {
   }
 
   render() {
-    let dishInfos = null;
-    switch (this.state.status) {
-      case 'INITIAL':
-        dishInfos = <div className="loader"></div>
-        break;
-      case 'LOADED':
-        dishInfos = this.state.selectedDishes.map((selectedDish) =>
-          <Panel>
-            <Panel.Body>
-              <div className="crop">
-                <img src={selectedDish.image} alt=""/>
-              </div>
-            </Panel.Body>
-            <Panel.Footer>
-              {selectedDish.title}
-            </Panel.Footer>
-          </Panel>
-        )
-        break;
-      default:
-        dishInfos = <b>Failed to load data, please try again.</b>
-        break;
-    }
+    let dishInfos =
+      this.state.selectedDishes.map((selectedDish) =>
+        <Panel>
+          <Panel.Body>
+            <div className="crop">
+              <img src={selectedDish.image} alt=""/>
+            </div>
+          </Panel.Body>
+          <Panel.Footer>
+            {selectedDish.title}
+            <div className="pull-right">
+              {this.props.model.getPriceOfDish(selectedDish)} SEK
+            </div>
+          </Panel.Footer>
+        </Panel>
+      )
 
     return (
       <Col sm={12} className="text-center" className="Overview">
@@ -62,11 +45,7 @@ class Overview extends Component {
 
         <div className="container-fluid">
           <Col xs={8}>
-            <Panel>
-              <Panel.Body>
-                {dishInfos}
-              </Panel.Body>
-            </Panel>
+            {dishInfos}
           </Col>
           <Col xs={4} className="text-center">
             <Panel>

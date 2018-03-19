@@ -61,7 +61,7 @@ class Dishes extends Component {
         dishesList = this.state.dishes.map((dish) =>
           <Col sm={3} className="SearchResultsWrapper">
             <Link to={"/dish/" + dish.id}>
-              <Panel onClick={/*toggleDishDetails(dish.id)*/ true} className="SearchResults">
+              <Panel className="SearchResults">
                 <Panel.Body>
                   <div className="crop">
                     <img src={this.state.baseUri + dish.image} alt=""/>

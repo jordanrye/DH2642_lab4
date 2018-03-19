@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import {
-    Col, Row,
-    FormGroup, FormControl, Button,
-    Panel
-} from 'react-bootstrap';
+import { Col, Panel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { modelInstance } from '../data/DinnerModel';
 import './DishInfo.css';
