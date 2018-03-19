@@ -1,7 +1,7 @@
 .Sidebar {
 	background-color: #FFF;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
-	height: 94vh;
+	height: 93vh;
 	position: fixed;
 	z-index: 10;
 	padding: 2rem;

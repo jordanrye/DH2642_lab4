@@ -6,9 +6,8 @@
 }
 html, body {
 	background-color: #EDF1F5;
-    height: 100%;
 	width: 100%;
-	/* font-family: "Comic Sans MS", cursive, sans-serif; */
+	height: 100%;
 	font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #2F323E;
 	text-align: justify;
@@ -27,4 +26,15 @@ h3 {
 .container-fluid {
 	padding: 0px;
 	margin: 0px;
+}
+.loader {
+	width: 90px;
+	height: 90px;
+	margin: 50px auto;
+	border: 12px solid #FFF;
+	border-radius: 50%;
+	border-top: 12px solid #428BCA;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+	-webkit-animation: spin 2s linear infinite; /* Safari */
+	animation: spin 2s linear infinite;
 }

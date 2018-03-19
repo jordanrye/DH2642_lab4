@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import { Col } from 'react-bootstrap';
+import { Col, Row, FormGroup, FormControl, Button } from 'react-bootstrap';
 import './Dishes.css';
 // Alternative to passing the moderl as the component property,
 // we can import the model instance directly
 import {modelInstance} from '../data/DinnerModel';
-
 
 class Dishes extends Component {
   constructor(props) {
@@ -37,12 +36,11 @@ class Dishes extends Component {
   render() {
     let dishesList = null;
 
-    // depending on the state we either generate
-    // useful message to the user or show the list
-    // of returned dishes
+    // Depending on the state we either generate useful message to the user
+    // or show the list of returned dishes.
     switch (this.state.status) {
       case 'INITIAL':
-        dishesList = <em>Loading...</em>
+        dishesList = <div className="loader"></div>
         break;
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
@@ -50,13 +48,40 @@ class Dishes extends Component {
         )
         break;
       default:
-        dishesList = <b>Failed to load data, please try again</b>
+        dishesList = <b>Failed to load data, please try again.</b>
         break;
     }
 
     return (
       <Col sm={9} smOffset={3} className="Dishes">
-        <h3>Dishes</h3>
+        <div className="SearchForm">
+          <h3>Find a dish</h3>
+          <Row>
+            <FormGroup>
+              <Col xs={12} sm={5} md={4} lg={3}>
+                <FormControl id="search-keywords" type="text" placeholder="Enter key words"/>
+              </Col>
+              <Col xs={12} sm={5} md={4} lg={3}>
+                <FormControl id="search-category" componentClass="select">
+                  <option>Main course</option>
+                  <option>Side dish</option>
+                  <option>Dessert</option>
+                  <option>Appetizer</option>
+                  <option>Salad</option>
+                  <option>Bread</option>
+                  <option>Breakfast</option>
+                  <option>Soup</option>
+                  <option>Beverage</option>
+                  <option>Sauce</option>
+                  <option>Drink</option>
+                </FormControl>
+              </Col>
+              <Col xs={12} sm={2} md={4} lg={2}>
+                <Button id="search-update" type="submit" className="btn btn-primary">Search</Button>
+              </Col>
+            </FormGroup>
+          </Row>
+        </div>
         <ul>
           {dishesList}
         </ul>
