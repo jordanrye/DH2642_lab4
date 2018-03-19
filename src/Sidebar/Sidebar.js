@@ -58,9 +58,9 @@ class Sidebar extends Component {
             </div>
             <hr/>
             <center>
-                <Link to="/overview">
-                    <button className="btn btn-primary">Confirm dinner</button>
-                </Link>
+              <Link to="/overview">
+                <button className="btn btn-primary">Confirm dinner</button>
+              </Link>
             </center>
           </Navbar.Collapse>
         </Navbar>

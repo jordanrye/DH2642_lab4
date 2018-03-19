@@ -27,8 +27,8 @@ class App extends Component {
           {/* We rended diffrent component based on the path */}
           <Route exact path="/" component={Welcome}/>
           <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
-          <Route exact path="/overview" component={Overview}/>
-          <Route exact path="/printout" component={Printout}/>
+          <Route exact path="/overview" render={() => <Overview model={modelInstance}/>}/>
+          <Route exact path="/printout" render={() => <Printout model={modelInstance}/>}/>
         </Row>
       </Grid>
     );
