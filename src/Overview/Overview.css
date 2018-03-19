@@ -12,3 +12,7 @@
   padding-bottom: 2rem;
   border-bottom: 1px solid #ccc;
 }
+
+.crop img {
+	min-width: 150px;
+}

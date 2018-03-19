@@ -39,7 +39,7 @@ const DinnerModel = function () {
   }
 
   // Returns all the dishes on the menu.
-  this.getFullMenu = () => selectedDishes;
+  this.getSelectedDishes = () => selectedDishes;
 
   // Returns all ingredients for all the dishes on the menu.
   this.getAllIngredients = () => {
@@ -61,13 +61,10 @@ const DinnerModel = function () {
 
   // Adds the passed dish to the menu. If the dish of that type already exists
   // on the menu it is removed from the menu and the new one added.
-  this.addDishToMenu = (id) => {
-    this.getDish(id, (dish) => {
-      selectedDishes.push(dish);
-      notifyObservers(this.DISH);
-    }, (error) => {
-      generateError(this.ERROR_ADD_DISH, this.ERROR_SUFFIX);
-    });
+  this.addDishToMenu = (dish) => {
+    selectedDishes.push(dish);
+    console.log(selectedDishes);
+    notifyObservers(this.DISH);
   }
 
   // Removes dish from menu
@@ -111,7 +108,7 @@ const DinnerModel = function () {
   // Helper function to handle errors on failed API calls.
   const handleError = (error) => {
     if (error.json) {
-      error.json().then(error => {
+      error.json().then((error) => {
         console.error('getAllDishes() API Error:', error.message || error)
       })
     } else {

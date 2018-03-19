@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 
 class Printout extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     // we put on state the properties we want to use and modify in the component
     this.state = {
       numberOfGuests: this.props.model.getNumberOfGuests()
-    }
+    };
   }
 
   render() {

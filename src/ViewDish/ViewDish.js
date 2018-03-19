@@ -9,7 +9,7 @@ class ViewDish extends Component {
     return (
       <Col sm={12} className="ViewDish">
         <Sidebar model={this.props.model}/>
-        <DishInfo dishId={this.props.match.params.dishId}/>
+        <DishInfo dishId={this.props.match.params.dishId} model={this.props.model}/>
       </Col>
     );
   }
