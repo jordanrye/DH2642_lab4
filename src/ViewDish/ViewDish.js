@@ -1,0 +1,19 @@
+import React, { Component } from 'react';
+import { Col } from 'react-bootstrap';
+import './ViewDish.css';
+import Sidebar from '../Sidebar/Sidebar';
+import DishInfo from '../DishInfo/DishInfo';
+
+class ViewDish extends Component {
+  render() {
+	{console.log(this.props);}
+    return (
+      <Col sm={12} className="ViewDish">
+        <Sidebar model={this.props.model}/>
+        <DishInfo dishId={this.props.match.params.dishId}/>
+      </Col>
+    );
+  }
+}
+
+export default ViewDish;

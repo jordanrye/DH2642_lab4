@@ -1,31 +1,24 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     Col, Row,
     FormGroup, FormControl, Button,
     Panel
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './Dishes.css';
-// Alternative to passing the moderl as the component property,
-// we can import the model instance directly
-import {modelInstance} from '../data/DinnerModel';
+import { modelInstance } from '../data/DinnerModel';
+import './DishInfo.css';
 
-class Dishes extends Component {
+class DishInfo extends Component {
+  // Constructor
   constructor(props) {
     super(props);
-    // We create the state to store the various statuses
-    // e.g. API data loading or error
     this.state = {
       status: 'INITIAL'
     }
   }
 
-  // this methods is called by React lifecycle when the
-  // component is actually shown to the user (mounted to DOM)
-  // that's a good place to call the API and get the data
+  // Update the state and re-render the application when data is retrieved.
   componentDidMount = () => {
-    // when data is retrieved we update the state
-    // this will cause the component to re-render
     modelInstance.getAllDishes().then(dishes => {
       this.setState({
         status: 'LOADED',
@@ -49,22 +42,7 @@ class Dishes extends Component {
         dishesList = <div className="loader"></div>
         break;
       case 'LOADED':
-        dishesList = this.state.dishes.map((dish) =>
-          <Col sm={2} className="SearchResultsWrapper">
-            <Link to={"/dish/:" + dish.id}>
-              <Panel onClick={/*toggleDishDetails(dish.id)*/ true} className="SearchResults">
-                <Panel.Body>
-                  <div className="crop">
-                    <img src={this.state.baseUri + dish.image} alt=""/>
-                  </div>
-                </Panel.Body>
-                <Panel.Footer>
-                  {dish.title}
-                </Panel.Footer>
-              </Panel>
-            </Link>
-          </Col>
-        )
+        dishesList = <p>Success! {this.props.dishId}</p>
         break;
       default:
         dishesList = <b>Failed to load data, please try again.</b>
@@ -72,7 +50,7 @@ class Dishes extends Component {
     }
 
     return (
-      <Col sm={9} smOffset={3} className="Dishes">
+      <Col sm={9} smOffset={3} className="DishInfo">
         <div className="SearchForm">
           <h3>Find a dish</h3>
           <Row>
@@ -109,4 +87,4 @@ class Dishes extends Component {
   }
 }
 
-export default Dishes;
+export default DishInfo;
