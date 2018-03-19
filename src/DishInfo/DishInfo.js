@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Panel } from 'react-bootstrap';
+import { Col, Panel, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { modelInstance } from '../data/DinnerModel';
 import './DishInfo.css';
@@ -18,18 +18,26 @@ class DishInfo extends Component {
 
   // Update the state and re-render the application when data is retrieved.
   componentDidMount = () => {
+    this.props.model.addObserver(this);
+    this.update();
+  }
+
+  componentWillUnmount = () => this.props.model.removeObserver(this);
+
+  update() {
     modelInstance.getDish(this.props.dishId).then(returnedDish => {
       this.setState({
         status: 'LOADED',
         dish: returnedDish,
         numberOfGuests: this.props.model.getNumberOfGuests(),
         priceOfDish: this.props.model.getPriceOfDish(returnedDish),
+        tableHeight: (30 * returnedDish.extendedIngredients.length) + 90,
         loaded: true
-      })
+      });
     }).catch(() => {
       this.setState({
         status: 'ERROR'
-      })
+      });
     })
   }
 
@@ -37,6 +45,7 @@ class DishInfo extends Component {
 
   render() {
     let dishesList = null;
+    let ingredientsTable = null;
 
     // Depending on the state we either generate useful message to the user
     // or show the list of returned dishes.
@@ -45,25 +54,40 @@ class DishInfo extends Component {
         dishesList = <div className="loader"></div>
         break;
       case 'LOADED':
+        ingredientsTable =
+          this.state.dish.extendedIngredients.map((ingredient) =>
+            <tr>
+                <td>{ingredient.amount} {ingredient.unit}</td>
+                <td>{ingredient.name}</td>
+            </tr>
+          )
+
         dishesList =
           <div className="row">
           <Col sm={6}>
             <Panel>
               <Panel.Body>
-        					<div className="main-top">
-                    <h3>{this.state.dish.title}</h3>
-                    <img src={this.state.dish.image}/>
-                    {this.state.dish.instructions}
-        					</div>
+      					<div className="main-top">
+                  <h3>{this.state.dish.title}</h3>
+                  <img src={this.state.dish.image}/>
+                  {this.state.dish.instructions}
+      					</div>
               </Panel.Body>
             </Panel>
             </Col>
             <Col sm={6}>
             <Panel>
               <Panel.Body>
-                  <span id="detailsIngredients"></span>
-                  Ingredients for {this.state.numberOfGuests} people.
-                  <br/>Total cost will be SEK {this.state.priceOfDish}.
+                <div class="notepad" height={this.state.tableHeight}>
+                  <Table class="notepad-ingredients">
+                    <tr>
+                      <th colspan="2">Shopping list...</th>
+                    </tr>
+                    {ingredientsTable}
+                  </Table>
+                </div>
+                Ingredients for {this.state.numberOfGuests} people.
+                <br/>Total cost will be SEK {this.state.priceOfDish}.
               </Panel.Body>
             </Panel>
             </Col>

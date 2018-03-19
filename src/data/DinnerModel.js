@@ -22,6 +22,9 @@ const DinnerModel = function () {
 
   // Sets the number of guests.
   this.setNumberOfGuests = (num) => {
+    if (isNaN(num)) {
+      num = 0;
+    }
     numberOfGuests = num;
     notifyObservers(this.GUESTS);
   }
