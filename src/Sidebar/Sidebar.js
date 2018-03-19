@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import './Sidebar.css';
 class Sidebar extends Component {
 
@@ -56,7 +57,11 @@ class Sidebar extends Component {
               @TODO: menu
             </div>
             <hr/>
-            <center><button className="btn btn-primary">Confirm dinner</button></center>
+            <center>
+              <Link to="/overview">
+                <button className="btn btn-primary">Confirm dinner</button>
+              </Link>
+            </center>
           </Navbar.Collapse>
         </Navbar>
       </Col>

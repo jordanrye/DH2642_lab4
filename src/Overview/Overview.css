@@ -1,0 +1,14 @@
+.Overview {
+  margin: 7vh auto 0 auto;
+  max-width: 70vw;
+  font-size: 14pt;
+  padding: 2rem;
+  text-align: justify;
+	display: block;
+}
+
+.dinnerConfirmText {
+  text-align: center;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #ccc;
+}
