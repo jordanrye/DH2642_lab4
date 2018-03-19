@@ -4,6 +4,7 @@ import {
     FormGroup, FormControl, Button,
     Panel
 } from 'react-bootstrap';
+import { BrowserRouter as Router } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import './Dishes.css';
 // Alternative to passing the moderl as the component property,
@@ -26,11 +27,19 @@ class Dishes extends Component {
   componentDidMount = () => {
     // when data is retrieved we update the state
     // this will cause the component to re-render
-    modelInstance.getAllDishes().then(dishes => {
+    var category = 'main course';
+    var filter = '';
+
+    if (typeof this.props.category !== 'undefined') category = this.props.category;
+    if (typeof this.props.filter !== 'undefined') filter = this.props.filter;
+
+    modelInstance.getAllDishes(category, filter).then(dishes => {
       this.setState({
         status: 'LOADED',
         dishes: dishes.results,
-        baseUri: dishes.baseUri
+        baseUri: dishes.baseUri,
+        category: '',
+        keywords: ''
       })
     }).catch(() => {
       this.setState({
@@ -50,7 +59,7 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
-          <Col sm={2} className="SearchResultsWrapper">
+          <Col sm={3} className="SearchResultsWrapper">
             <Link to={"/dish/" + dish.id}>
               <Panel onClick={/*toggleDishDetails(dish.id)*/ true} className="SearchResults">
                 <Panel.Body>
@@ -78,10 +87,10 @@ class Dishes extends Component {
           <Row>
             <FormGroup className="FormGroup">
               <Col xs={12} sm={5} md={4} lg={3} className="FormField">
-                <FormControl id="search-keywords" type="text" placeholder="Enter key words"/>
+                <FormControl id="search-keywords" type="text" value={this.state.keywords} placeholder="Enter key words"/>
               </Col>
               <Col xs={12} sm={5} md={4} lg={3} className="FormField">
-                <FormControl id="search-category" componentClass="select">
+                <FormControl id="search-category" value={this.state.category} componentClass="select">
                   <option>Main course</option>
                   <option>Side dish</option>
                   <option>Dessert</option>

@@ -9,7 +9,7 @@ class SelectDish extends Component {
     return (
       <Col sm={12} className="SelectDish">
         <Sidebar model={this.props.model}/>
-        <Dishes/>
+        <Dishes category={this.props.match.params.category} filter={this.props.match.params.filter}/>
       </Col>
     );
   }
