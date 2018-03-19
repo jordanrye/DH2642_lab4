@@ -1,5 +1,8 @@
 const httpOptions = {
-  headers: {'X-Mashape-Key': 'Qu9grxVNWpmshA4Kl9pTwyiJxVGUp1lKzrZjsnghQMkFkfA4LB'}
+  headers: {
+    'X-Mashape-Key': 'Qu9grxVNWpmshA4Kl9pTwyiJxVGUp1lKzrZjsnghQMkFkfA4LB',
+    'Accept': 'application/json'
+  }
 };
 
 const DinnerModel = function () {
@@ -63,15 +66,15 @@ const DinnerModel = function () {
       selectedDishes.push(dish);
       notifyObservers(this.DISH);
     }, (error) => {
-      console.log(generateErrorMessage(this.ERROR_ADD_DISH, this.ERROR_SUFFIX));
+      generateError(this.ERROR_ADD_DISH, this.ERROR_SUFFIX);
     });
   }
 
   // Removes dish from menu
   this.removeDishFromMenu = (id) => {
-    for (let idx = 0; idx < selectedDishes.length; ++idx) {
-      if (selectedDishes[idx].id === id) {
-        selectedDishes.splice(idx, 1);
+    for (let i = 0; i < selectedDishes.length; i++) {
+      if (selectedDishes[i].id === id) {
+        selectedDishes.splice(i, 1);
         notifyObservers(this.DISH);
         return;
       }
@@ -82,7 +85,7 @@ const DinnerModel = function () {
   // dish", "dessert"). You can use the filter argument to filter out the dish
   // by name or ingredient (use for search). If you don't pass any filter all
   // the dishes will be returned.
-  this.getAllDishes = function (type='', filter='') {
+  this.getAllDishes = (type='', filter='') => {
     const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type=' + type + '&query=' + filter + '&number=16';
     return fetch(url, httpOptions)
       .then(processResponse)
@@ -98,7 +101,7 @@ const DinnerModel = function () {
   }
 
   // Helper function to process API responses.
-  const processResponse = function (response) {
+  const processResponse = (response) => {
     if (response.ok) {
       return response.json()
     }
@@ -106,7 +109,7 @@ const DinnerModel = function () {
   }
 
   // Helper function to handle errors on failed API calls.
-  const handleError = function (error) {
+  const handleError = (error) => {
     if (error.json) {
       error.json().then(error => {
         console.error('getAllDishes() API Error:', error.message || error)
@@ -117,7 +120,9 @@ const DinnerModel = function () {
   }
 
   // Helper function to generate error messages on failed AJAX calls.
-  var generateErrorMessage = (prefix, suffix) => prefix + " " + suffix;
+  const generateError = (prefix, suffix) => {
+      console.error(prefix + ' ' + suffix);
+  }
 
   // Add observer to list of observers.
   this.addObserver = (observer) => observers.push(observer);
@@ -128,7 +133,7 @@ const DinnerModel = function () {
   };
 
   // Notify all observers that they need to be updated.
-  const notifyObservers = function (condition) {
+  const notifyObservers = (condition) => {
     observers.forEach(obs => obs.update(condition));
   };
 };
