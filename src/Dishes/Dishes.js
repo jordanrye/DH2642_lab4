@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
-import { Col, Row, FormGroup, FormControl, Button } from 'react-bootstrap';
+import {
+    Col, Row,
+    FormGroup, FormControl, Button,
+    Panel
+} from 'react-bootstrap';
 import './Dishes.css';
 // Alternative to passing the moderl as the component property,
 // we can import the model instance directly
@@ -24,7 +28,8 @@ class Dishes extends Component {
     modelInstance.getAllDishes().then(dishes => {
       this.setState({
         status: 'LOADED',
-        dishes: dishes.results
+        dishes: dishes.results,
+        baseUri: dishes.baseUri
       })
     }).catch(() => {
       this.setState({
@@ -44,7 +49,18 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
-          <li key={dish.id}>{dish.title}</li>
+          <Col sm={3} className="SearchResultsWrapper">
+            <Panel onClick={/*toggleDishDetails(dish.id)*/ true} className="SearchResults">
+              <Panel.Body>
+                <div className="crop">
+                  <img src={this.state.baseUri + dish.image} alt=""/>
+                </div>
+              </Panel.Body>
+              <Panel.Footer>
+                {dish.title}
+              </Panel.Footer>
+            </Panel>
+          </Col>
         )
         break;
       default:
@@ -57,11 +73,11 @@ class Dishes extends Component {
         <div className="SearchForm">
           <h3>Find a dish</h3>
           <Row>
-            <FormGroup>
-              <Col xs={12} sm={5} md={4} lg={3}>
+            <FormGroup className="FormGroup">
+              <Col xs={12} sm={5} md={4} lg={3} className="FormField">
                 <FormControl id="search-keywords" type="text" placeholder="Enter key words"/>
               </Col>
-              <Col xs={12} sm={5} md={4} lg={3}>
+              <Col xs={12} sm={5} md={4} lg={3} className="FormField">
                 <FormControl id="search-category" componentClass="select">
                   <option>Main course</option>
                   <option>Side dish</option>
@@ -76,7 +92,7 @@ class Dishes extends Component {
                   <option>Drink</option>
                 </FormControl>
               </Col>
-              <Col xs={12} sm={2} md={4} lg={2}>
+              <Col xs={12} sm={2} md={4} lg={2} className="FormField">
                 <Button id="search-update" type="submit" className="btn btn-primary">Search</Button>
               </Col>
             </FormGroup>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col } from 'react-bootstrap';
+import { Col, Navbar } from 'react-bootstrap';
 import './Sidebar.css';
 class Sidebar extends Component {
 
@@ -40,18 +40,25 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <Col sm={3} className="Sidebar">
-        <h3>My dinner</h3>
-        <p>
-          People: <input value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
-          <br/>Total number of guests: {this.state.numberOfGuests}
-        </p>
-        <hr/>
-        <p>
-          TODO menu
-        </p>
-        <hr/>
-        <center><button className="btn btn-primary">Confirm dinner</button></center>
+      <Col xsHidden sm={3} className="Sidebar">
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Toggle/>
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <h3>My dinner</h3>
+            <div>
+              People: <input value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
+              <br/>Total number of guests: {this.state.numberOfGuests}
+            </div>
+            <hr/>
+            <div>
+              @TODO: menu
+            </div>
+            <hr/>
+            <center><button className="btn btn-primary">Confirm dinner</button></center>
+          </Navbar.Collapse>
+        </Navbar>
       </Col>
     );
   }
