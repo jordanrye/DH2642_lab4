@@ -12,6 +12,10 @@
   border-bottom: 1px solid #ccc;
 }
 
+.dinnerConfirmation {
+  padding: 0;
+}
+
 .crop {
 	min-width: 150px;
 }
