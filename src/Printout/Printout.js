@@ -25,8 +25,7 @@ class Printout extends Component {
         non proident, sunt in culpa qui officia deserunt mollit\
         anim id est laborum.";
 
-    let dishPrepInfo = null;
-    dishPrepInfo =
+    let dishPrepInfo =
       this.state.selectedDishes.map((selectedDish) =>
         <Panel>
           <Panel.Body>
@@ -60,7 +59,7 @@ class Printout extends Component {
               </Col>
             </Panel.Body>
           </Panel>
-          
+
           {dishPrepInfo}
         </p>
       </Col>

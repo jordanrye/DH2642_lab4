@@ -33,9 +33,7 @@ class DishInfo extends Component {
     })
   }
 
-  addDishToMenu = () => {
-    this.props.model.addDishToMenu(this.state.dish);
-  }
+  addDishToMenu = () => this.props.model.addDishToMenu(this.state.dish);
 
   render() {
     let dishesList = null;
