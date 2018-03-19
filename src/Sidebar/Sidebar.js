@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Navbar, Table } from 'react-bootstrap';
+import { Col, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 
@@ -61,13 +61,17 @@ class Sidebar extends Component {
             </div>
             <hr/>
             <div>
-            <Table className="sidebarSelected">
-              <tr className="hide-hr">
-                <th>Dish Name</th>
-                <th>Cost</th>
-              </tr>
-              {selectedDishesTable}
-            </Table>
+            <table className="sidebarSelected">
+              <thead>
+                <tr className="hide-hr">
+                  <th>Dish Name</th>
+                  <th>Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                {selectedDishesTable}
+              </tbody>
+            </table>
             <div className="sidebarTotalCost">
               {this.state.totalMenuPrice}
             </div>

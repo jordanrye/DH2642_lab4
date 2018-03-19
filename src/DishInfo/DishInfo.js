@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Panel, Table } from 'react-bootstrap';
+import { Col, Panel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { modelInstance } from '../data/DinnerModel';
 import './DishInfo.css';
@@ -45,7 +45,6 @@ class DishInfo extends Component {
 
   render() {
     let dishesList = null;
-    let ingredientsTable = null;
 
     // Depending on the state we either generate useful message to the user
     // or show the list of returned dishes.
@@ -54,7 +53,11 @@ class DishInfo extends Component {
         dishesList = <div className="loader"></div>
         break;
       case 'LOADED':
-        ingredientsTable =
+        let style = {
+          height: this.state.tableHeight
+        };
+
+        let ingredientsTable =
           this.state.dish.extendedIngredients.map((ingredient) =>
             <tr>
                 <td>{ingredient.amount} {ingredient.unit}</td>
@@ -69,7 +72,7 @@ class DishInfo extends Component {
               <Panel.Body>
       					<div className="main-top">
                   <h3>{this.state.dish.title}</h3>
-                  <img src={this.state.dish.image}/>
+                  <img src={this.state.dish.image} alt=""/>
                   {this.state.dish.instructions}
       					</div>
               </Panel.Body>
@@ -78,13 +81,17 @@ class DishInfo extends Component {
             <Col sm={6}>
             <Panel>
               <Panel.Body>
-                <div class="notepad" height={this.state.tableHeight}>
-                  <Table class="notepad-ingredients">
-                    <tr>
-                      <th colspan="2">Shopping list...</th>
-                    </tr>
-                    {ingredientsTable}
-                  </Table>
+                <div className="notepad" style={style}>
+                  <table className="notepad-ingredients">
+                    <thead>
+                      <tr>
+                        <th colSpan="2">Shopping list...</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {ingredientsTable}
+                    </tbody>
+                  </table>
                 </div>
                 Ingredients for {this.state.numberOfGuests} people.
                 <br/>Total cost will be SEK {this.state.priceOfDish}.

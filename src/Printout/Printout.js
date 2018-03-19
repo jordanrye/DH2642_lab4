@@ -45,23 +45,21 @@ class Printout extends Component {
       )
 
     return (
-      <Col sm={12}>
-        <p className="Printout">
-          <Panel>
-            <Panel.Body>
-              <Col sm={2}>
-              <Link to="/search">
-                <button className="btn btn-primary">Go Back And Edit Dinner</button>
-              </Link>
-              </Col>
-              <Col sm={10}>
-                <h3 className="pull-right">Dinner for {this.state.numberOfGuests} people</h3>
-              </Col>
-            </Panel.Body>
-          </Panel>
+      <Col sm={12} className="Printout">
+        <Panel>
+          <Panel.Body>
+            <Col sm={2}>
+            <Link to="/search">
+              <button className="btn btn-primary">Go Back And Edit Dinner</button>
+            </Link>
+            </Col>
+            <Col sm={10}>
+              <h3 className="pull-right">Dinner for {this.state.numberOfGuests} people</h3>
+            </Col>
+          </Panel.Body>
+        </Panel>
 
-          {dishPrepInfo}
-        </p>
+        {dishPrepInfo}
       </Col>
     );
   }

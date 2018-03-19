@@ -66,7 +66,6 @@ const DinnerModel = function () {
   // on the menu it is removed from the menu and the new one added.
   this.addDishToMenu = (dish) => {
     selectedDishes.push(dish);
-    console.log(selectedDishes);
     notifyObservers(this.DISH);
   }
 
@@ -120,22 +119,16 @@ const DinnerModel = function () {
   }
 
   // Helper function to generate error messages on failed AJAX calls.
-  const generateError = (prefix, suffix) => {
-      console.error(prefix + ' ' + suffix);
-  }
+  //const generateError = (prefix, suffix) => console.error(prefix + ' ' + suffix);
 
   // Add observer to list of observers.
   this.addObserver = (observer) => observers.push(observer);
 
   // Find and remove observer from list of observers.
-  this.removeObserver = (observer) => {
-    observers = observers.filter(obs => obs !== observer);
-  };
+  this.removeObserver = (observer) => observers = observers.filter(obs => obs !== observer);
 
   // Notify all observers that they need to be updated.
-  const notifyObservers = (condition) => {
-    observers.forEach(obs => obs.update(condition));
-  };
+  const notifyObservers = (condition) => observers.forEach(obs => obs.update(condition));
 };
 
 export const modelInstance = new DinnerModel();
