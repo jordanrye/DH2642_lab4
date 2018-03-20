@@ -17,6 +17,7 @@
 }
 .navbar > .container > .navbar-collapse {
 	margin: 0 -15px;
+	overflow: visible;
 }
 .navbar-toggle .icon-bar {
     background-color: black;
