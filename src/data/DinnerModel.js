@@ -7,8 +7,7 @@ const httpOptions = {
 
 const DinnerModel = function () {
   let numberOfGuests = localStorage.app_NumberOfGuests || 4;
-  if (localStorage.getItem("app_SelectedDishes") === null) var selectedDishes = [];
-  else var selectedDishes = JSON.parse(localStorage.app_SelectedDishes);
+  var selectedDishes = retrieveSelectedDishesFromCache();
   var observers = [];
 
   // Conditions
@@ -24,11 +23,11 @@ const DinnerModel = function () {
   // Sets the number of guests.
   this.setNumberOfGuests = (num) => {
     if (isNaN(num)) {
-      num = 0;
+      return;
     }
     numberOfGuests = num;
     notifyObservers(this.GUESTS);
-  }
+  };
 
   // Retrieve the number of guests.
   this.getNumberOfGuests = () => numberOfGuests;
@@ -40,7 +39,7 @@ const DinnerModel = function () {
         return dish;
       }
     }
-  }
+  };
 
   // Returns all the dishes on the menu.
   this.getSelectedDishes = () => selectedDishes;
@@ -54,7 +53,7 @@ const DinnerModel = function () {
       }
     }
     return ingredients;
-  }
+  };
 
   // Returns the total price of the menu (all the ingredients multiplied by
   // number of guests) rounded to 2 decimal places.
@@ -69,7 +68,7 @@ const DinnerModel = function () {
     selectedDishes.push(dish);
     localStorage.setItem("app_SelectedDishes", JSON.stringify(selectedDishes));
     notifyObservers(this.DISH);
-  }
+  };
 
   // Removes dish from menu
   this.removeDishFromMenu = (id) => {
@@ -80,7 +79,7 @@ const DinnerModel = function () {
         return;
       }
     }
-  }
+  };
 
   // Function that returns all dishes of specific type (i.e. "starter", "main
   // dish", "dessert"). You can use the filter argument to filter out the dish
@@ -90,38 +89,35 @@ const DinnerModel = function () {
     const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type=' + type + '&query=' + filter + '&number=16';
     return fetch(url, httpOptions)
       .then(processResponse)
-      .catch(handleError)
-  }
+      .catch(handleError);
+  };
 
   // Function that returns a dish of specific ID
   this.getDish = (id) => {
     const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + id + '/information';
     return fetch(url, httpOptions)
       .then(processResponse)
-      .catch(handleError)
-  }
+      .catch(handleError);
+  };
 
   // Helper function to process API responses.
   const processResponse = (response) => {
     if (response.ok) {
-      return response.json()
+      return response.json();
     }
     throw response;
-  }
+  };
 
   // Helper function to handle errors on failed API calls.
   const handleError = (error) => {
     if (error.json) {
       error.json().then((error) => {
-        console.error('getAllDishes() API Error:', error.message || error)
-      })
+        console.error('getAllDishes() API Error:', error.message || error);
+      });
     } else {
-      console.error('getAllDishes() API Error:', error.message || error)
+      console.error('getAllDishes() API Error:', error.message || error);
     }
-  }
-
-  // Helper function to generate error messages on failed AJAX calls.
-  //const generateError = (prefix, suffix) => console.error(prefix + ' ' + suffix);
+  };
 
   // Add observer to list of observers.
   this.addObserver = (observer) => observers.push(observer);
@@ -131,6 +127,13 @@ const DinnerModel = function () {
 
   // Notify all observers that they need to be updated.
   const notifyObservers = (condition) => observers.forEach(obs => obs.update(condition));
+
+  function retrieveSelectedDishesFromCache() {
+    if (localStorage.getItem("app_SelectedDishes") === null) {
+      return [];
+    }
+    return JSON.parse(localStorage.app_SelectedDishes);
+  }
 };
 
 export const modelInstance = new DinnerModel();
