@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Panel } from 'react-bootstrap';
+import { Row, Col, Panel } from 'react-bootstrap';
 import './Overview.css';
 import { Link } from 'react-router-dom';
 
@@ -18,46 +18,46 @@ class Overview extends Component {
   render() {
     let dishInfos =
       this.state.selectedDishes.map((selectedDish) =>
-        <Panel>
-          <Panel.Body>
-            <div className="crop">
-              <img src={selectedDish.image} alt=""/>
-            </div>
-          </Panel.Body>
-          <Panel.Footer>
-            {selectedDish.title}
-            <div className="pull-right">
+        <Col sm={4}>
+          <Panel>
+            <Panel.Body>
+              <div className="crop">
+                <img src={selectedDish.image} alt=""/>
+              </div>
+            </Panel.Body>
+            <Panel.Footer>
+              {selectedDish.title}
+            </Panel.Footer>
+            <div className="OverviewPrice">
               {this.props.model.getPriceOfDish(selectedDish)} SEK
             </div>
-          </Panel.Footer>
-        </Panel>
+          </Panel>
+        </Col>
       )
 
     return (
       <Col sm={12} className="text-center Overview">
-        <Panel>
-          <Panel.Body>
-            <Link to="/search">
-              <button className="btn btn-primary">Go Back And Edit Dinner</button>
-            </Link>
-          </Panel.Body>
-        </Panel>
+        <div className="OverviewHeader">
+          <Link to="/search">
+            <button className="btn btn-primary">Go Back And Edit Dinner</button>
+          </Link>
+        </div>
 
         <div className="container-fluid">
           <Col xs={8}>
-            {dishInfos}
+            <Row className="results-panel">
+              {dishInfos}
+            </Row>
           </Col>
           <Col xs={4} className="text-center">
-            <Panel>
-              <Panel.Body>
-                <h3 className="dinnerConfirmText">Dinner confirmation</h3>
-                <p>Dinner for {this.state.numberOfGuests} people.</p>
-                <p>Total cost will be {this.state.totalMenuPrice} SEK.</p>
-                <Link to="/printout">
-                  <button className="btn btn-primary">Print Full Recipe</button>
-                </Link>
-              </Panel.Body>
-            </Panel>
+            <div className="OverviewSummary">
+              <h3 className="dinnerConfirmText">Dinner confirmation</h3>
+              <p>Dinner for {this.state.numberOfGuests} people.</p>
+              <p>Total cost will be {this.state.totalMenuPrice} SEK.</p>
+              <Link to="/printout">
+                <button className="btn btn-primary">Print Full Recipe</button>
+              </Link>
+            </div>
           </Col>
         </div>
       </Col>
