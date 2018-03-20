@@ -18,35 +18,33 @@ class Dishes extends Component {
     // e.g. API data loading or error
     this.state = {
       status: 'INITIAL'
-    }
+    };
+
+    this.category = '';
+    this.filter = '';
   }
 
   // this methods is called by React lifecycle when the
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to call the API and get the data
-  componentDidMount = () => {
-    // when data is retrieved we update the state
-    // this will cause the component to re-render
-    var category = 'main course';
-    var filter = '';
+  componentDidMount = () => this.getAllDishes();
 
-    if (typeof this.props.category !== 'undefined') category = this.props.category;
-    if (typeof this.props.filter !== 'undefined') filter = this.props.filter;
+  getAllDishes = (newCategory, newFilter) => {
+    newCategory = newCategory || 'Main course';
+    newFilter = newFilter || '';
 
-    modelInstance.getAllDishes(category, filter).then(dishes => {
+    modelInstance.getAllDishes(newCategory, newFilter).then((dishes) => {
       this.setState({
         status: 'LOADED',
         dishes: dishes.results,
-        baseUri: dishes.baseUri,
-        category: '',
-        keywords: ''
-      })
+        baseUri: dishes.baseUri
+      });
     }).catch(() => {
       this.setState({
         status: 'ERROR'
-      })
-    })
-  }
+      });
+    });
+  };
 
   render() {
     let dishesList = null;
@@ -59,7 +57,7 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
-          <Col sm={3} className="SearchResultsWrapper">
+          <Col sm={3} className="SearchResultsWrapper" key={dish.id}>
             <Link to={"/dish/" + dish.id}>
               <Panel className="SearchResults">
                 <Panel.Body>
@@ -81,16 +79,16 @@ class Dishes extends Component {
     }
 
     return (
-      <Col sm={9} smOffset={3} className="Dishes">
+      <Col sm={9} smOffset={3} className="Dishes" key="dishSearchKey">
         <div className="SearchForm">
           <h3>Find a dish</h3>
           <Row>
             <FormGroup className="FormGroup">
               <Col xs={12} sm={5} md={4} lg={3} className="FormField">
-                <FormControl id="search-keywords" type="text" value={this.state.keywords} placeholder="Enter key words"/>
+                <FormControl id="search-keywords" type="text" inputRef={ref => { this.filter = ref; }} placeholder="Enter key words"/>
               </Col>
               <Col xs={12} sm={5} md={4} lg={3} className="FormField">
-                <FormControl id="search-category" value={this.state.category} componentClass="select">
+                <FormControl id="search-category" inputRef={ref => { this.category = ref; }} componentClass="select">
                   <option>Main course</option>
                   <option>Side dish</option>
                   <option>Dessert</option>
@@ -105,7 +103,9 @@ class Dishes extends Component {
                 </FormControl>
               </Col>
               <Col xs={12} sm={2} md={4} lg={2} className="FormField">
-                <Button id="search-update" type="submit" className="btn btn-primary">Search</Button>
+                <Link to={"/search/" + this.category.value + "/" + this.filter.value}>
+                  <Button onClick={this.getAllDishes(this.category.value, this.filter.value)} type="submit" className="btn btn-primary">Search</Button>
+                </Link>
               </Col>
             </FormGroup>
           </Row>
