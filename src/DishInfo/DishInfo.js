@@ -19,12 +19,7 @@ class DishInfo extends Component {
   // Update the state and re-render the application when data is retrieved.
   componentDidMount = () => {
     this.props.model.addObserver(this);
-    this.update();
-  }
 
-  componentWillUnmount = () => this.props.model.removeObserver(this);
-
-  update = () => {
     modelInstance.getDish(this.props.dishId).then((returnedDish) => {
       this.setState({
         status: 'LOADED',
@@ -38,6 +33,22 @@ class DishInfo extends Component {
       this.setState({
         status: 'ERROR'
       });
+    });
+  }
+
+  componentWillUnmount = () => this.props.model.removeObserver(this);
+
+  update = () => {
+    let dish = this.state.dish;
+    let tableHeight = this.state.tableHeight;
+
+    this.setState({
+      status: 'LOADED',
+      dish: dish,
+      numberOfGuests: this.props.model.getNumberOfGuests(),
+      priceOfDish: this.props.model.getPriceOfDish(dish),
+      tableHeight: tableHeight,
+      loaded: true
     });
   };
 
