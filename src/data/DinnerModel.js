@@ -128,6 +128,13 @@ const DinnerModel = function () {
   // Notify all observers that they need to be updated.
   const notifyObservers = (condition) => observers.forEach(obs => obs.update(condition));
 
+  this.resetCache = () => {
+    localStorage.removeItem("app_NumberOfGuests");
+    localStorage.removeItem("app_SelectedDishes");
+    numberOfGuests = 4;
+    selectedDishes = [];
+  };
+
   function retrieveSelectedDishesFromCache() {
     if (localStorage.getItem("app_SelectedDishes") === null) {
       return [];

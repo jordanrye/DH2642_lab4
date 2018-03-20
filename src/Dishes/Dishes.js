@@ -4,7 +4,6 @@ import {
     FormGroup, FormControl, Button,
     Panel
 } from 'react-bootstrap';
-import { BrowserRouter as Router } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import './Dishes.css';
 // Alternative to passing the model as the component property,
