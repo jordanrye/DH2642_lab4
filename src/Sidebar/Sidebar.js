@@ -80,11 +80,15 @@ class Sidebar extends Component {
             <hr/>
             <div>
             <table className="sidebarSelected">
-              <tr className="hide-hr">
-                <th>Dish Name</th>
-                <th>Cost</th>
-              </tr>
-              {selectedDishesTable}
+              <thead>
+                <tr className="hide-hr">
+                  <th>Dish Name</th>
+                  <th>Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                {selectedDishesTable}
+              </tbody>
             </table>
             <div className="sidebarTotalCost">
               SEK {this.state.totalMenuPrice}
