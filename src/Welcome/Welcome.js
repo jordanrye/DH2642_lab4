@@ -11,7 +11,7 @@ class Welcome extends Component {
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
         <Link to="/search/main%20course/%20">
-          <button className="btn btn-primary">Start planning</button>
+          <button className="btn btn-primary" onClick={localStorage.removeItem("app_NumberOfGuests"), localStorage.removeItem("app_SelectedDishes")}>Start planning</button>
         </Link>
       </Col>
     );
