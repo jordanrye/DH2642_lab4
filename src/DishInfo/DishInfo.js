@@ -41,7 +41,10 @@ class DishInfo extends Component {
     })
   }
 
-  addDishToMenu = () => this.props.model.addDishToMenu(this.state.dish);
+  addDishToMenu = () => {
+      this.props.model.addDishToMenu(this.state.dish);
+      localStorage.setItem("app_SelectedDishes", JSON.stringify(this.props.model.getSelectedDishes()));
+  }
 
   render() {
     let dishesList = null;

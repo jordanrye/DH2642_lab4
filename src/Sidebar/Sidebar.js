@@ -14,6 +14,11 @@ class Sidebar extends Component {
       selectedDishes: this.props.model.getSelectedDishes(),
       totalMenuPrice: this.props.model.getTotalMenuPrice()
     };
+
+    this.state.numberOfGuests = localStorage.app_NumberOfGuests || this.state.numberOfGuests;
+    if (!!localStorage.app_SelectedDishes) {
+        this.state.selectedDishes = JSON.parse(localStorage.app_SelectedDishes);
+    }
   }
 
   // this methods is called by React lifecycle when the
@@ -36,22 +41,25 @@ class Sidebar extends Component {
   }
 
   // our handler for the input's on change event
-  onNumberOfGuestsChanged = (e) => this.props.model.setNumberOfGuests(+e.target.value);
-
-  increaseValue() {
-    var value = parseInt(document.getElementById('totalNumberOfGuests').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value++;
-    document.getElementById('totalNumberOfGuests').value = value;
+  onNumberOfGuestsChanged = (e) => {
+      this.props.model.setNumberOfGuests(+e.target.value);
+      localStorage.setItem("app_NumberOfGuests", e.target.value);
   }
 
-  decreaseValue() {
-    var value = parseInt(document.getElementById('totalNumberOfGuests').value, 10);
-    value = isNaN(value) ? 0 : value;
-    value < 1 ? value = 1 : '';
-    value--;
-    document.getElementById('totalNumberOfGuests').value = value;
-  }
+  // increaseValue() {
+  //   var value = parseInt(document.getElementById('totalNumberOfGuests').value, 10);
+  //   value = isNaN(value) ? 0 : value;
+  //   value++;
+  //   document.getElementById('totalNumberOfGuests').value = value;
+  // }
+  //
+  // decreaseValue() {
+  //   var value = parseInt(document.getElementById('totalNumberOfGuests').value, 10);
+  //   value = isNaN(value) ? 0 : value;
+  //   value < 1 ? value = 1 : '';
+  //   value--;
+  //   document.getElementById('totalNumberOfGuests').value = value;
+  // }
 
   render() {
     let selectedDishesTable =

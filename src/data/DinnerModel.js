@@ -6,8 +6,8 @@ const httpOptions = {
 };
 
 const DinnerModel = function () {
-  let numberOfGuests = 4;
-  var selectedDishes = [];
+  let numberOfGuests = localStorage.app_NumberOfGuests || 4;
+  var selectedDishes = JSON.parse(localStorage.app_SelectedDishes) || [];
   var observers = [];
 
   // Conditions
