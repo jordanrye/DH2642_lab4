@@ -13,7 +13,7 @@ class DishInfo extends Component {
       numberOfGuests: this.props.model.getNumberOfGuests(),
       dishId: this.props.dishId,
       loaded: false     // Used to disable the add dish to menu button until the dish is loaded
-    }
+    };
   }
 
   // Update the state and re-render the application when data is retrieved.
@@ -24,8 +24,8 @@ class DishInfo extends Component {
 
   componentWillUnmount = () => this.props.model.removeObserver(this);
 
-  update() {
-    modelInstance.getDish(this.props.dishId).then(returnedDish => {
+  update = () => {
+    modelInstance.getDish(this.props.dishId).then((returnedDish) => {
       this.setState({
         status: 'LOADED',
         dish: returnedDish,
@@ -38,12 +38,10 @@ class DishInfo extends Component {
       this.setState({
         status: 'ERROR'
       });
-    })
-  }
+    });
+  };
 
-  addDishToMenu = () => {
-      this.props.model.addDishToMenu(this.state.dish);
-  }
+  addDishToMenu = () => this.props.model.addDishToMenu(this.state.dish);
 
   render() {
     let dishesList = null;

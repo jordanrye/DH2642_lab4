@@ -12,10 +12,10 @@ import Printout from "./Printout/Printout";
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       title: 'Dinner Planner',
-    }
+    };
   }
 
   render() {

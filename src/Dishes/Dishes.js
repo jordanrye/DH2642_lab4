@@ -7,7 +7,7 @@ import {
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import './Dishes.css';
-// Alternative to passing the moderl as the component property,
+// Alternative to passing the model as the component property,
 // we can import the model instance directly
 import {modelInstance} from '../data/DinnerModel';
 

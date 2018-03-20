@@ -37,8 +37,8 @@ class Sidebar extends Component {
 
   // our handler for the input's on change event
   onNumberOfGuestsChanged = (e) => {
-      this.props.model.setNumberOfGuests(+e.target.value);
-      localStorage.setItem("app_NumberOfGuests", e.target.value);
+    this.props.model.setNumberOfGuests(+e.target.value);
+    localStorage.setItem("app_NumberOfGuests", e.target.value);
   }
 
   // increaseValue() {
