@@ -6,7 +6,7 @@ const httpOptions = {
 };
 
 const DinnerModel = function () {
-  let numberOfGuests = localStorage.app_NumberOfGuests || 4;
+  let numberOfGuests = retrieveNumberOfGuestsFromCache();
   var selectedDishes = retrieveSelectedDishesFromCache();
   var observers = [];
 
@@ -133,6 +133,13 @@ const DinnerModel = function () {
       return [];
     }
     return JSON.parse(localStorage.app_SelectedDishes);
+  }
+
+  function retrieveNumberOfGuestsFromCache() {
+    if (localStorage.getItem("app_NumberOfGuests") === null) {
+      return 4;
+    }
+    return parseInt(localStorage.app_NumberOfGuests);
   }
 };
 
