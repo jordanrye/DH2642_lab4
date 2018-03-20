@@ -26,6 +26,7 @@ const DinnerModel = function () {
       return;
     }
     numberOfGuests = num;
+    localStorage.setItem("app_NumberOfGuests", num);
     notifyObservers(this.GUESTS);
   };
 

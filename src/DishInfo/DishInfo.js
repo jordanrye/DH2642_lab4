@@ -40,15 +40,10 @@ class DishInfo extends Component {
 
   update = () => {
     let dish = this.state.dish;
-    let tableHeight = this.state.tableHeight;
 
     this.setState({
-      status: 'LOADED',
-      dish: dish,
       numberOfGuests: this.props.model.getNumberOfGuests(),
-      priceOfDish: this.props.model.getPriceOfDish(dish),
-      tableHeight: tableHeight,
-      loaded: true
+      priceOfDish: this.props.model.getPriceOfDish(dish)
     });
   };
 
@@ -71,7 +66,7 @@ class DishInfo extends Component {
         let ingredientsTable =
           this.state.dish.extendedIngredients.map((ingredient) =>
             <tr>
-              <td>{ingredient.amount} {ingredient.unit}</td>
+              <td>{ingredient.amount * this.state.numberOfGuests} {ingredient.unit}</td>
               <td>{ingredient.name}</td>
             </tr>
           )
