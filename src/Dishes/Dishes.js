@@ -78,7 +78,7 @@ class Dishes extends Component {
     }
 
     return (
-      <Col sm={9} smOffset={3} className="Dishes" key="dishSearchKey">
+      <Col xs={9} xsOffset={3} className="Dishes" key="dishSearchKey">
         <div className="SearchForm">
           <h3>Find a dish</h3>
           <Row>
@@ -102,9 +102,7 @@ class Dishes extends Component {
                 </FormControl>
               </Col>
               <Col xs={12} sm={2} md={4} lg={2} className="FormField">
-                <Link to={"/search/" + this.category.value + "/" + this.filter.value}>
-                  <Button onClick={this.getAllDishes(this.category.value, this.filter.value)} type="submit" className="btn btn-primary">Search</Button>
-                </Link>
+                <Button onClick={() => this.getAllDishes(this.category.value, this.filter.value)} type="submit" className="btn btn-primary">Search</Button>
               </Col>
             </FormGroup>
           </Row>

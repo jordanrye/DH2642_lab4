@@ -28,14 +28,24 @@ h3 {
 	padding: 0px;
 	margin: 0px;
 }
+
+/* Loading animation */
 .loader {
 	width: 90px;
 	height: 90px;
-	margin: 50px auto;
+	margin: 150px auto;
 	border: 12px solid #FFF;
 	border-radius: 50%;
 	border-top: 12px solid #428BCA;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
-	-webkit-animation: spin 2s linear infinite; /* Safari */
+	-webkit-animation: spin 2s linear infinite;
 	animation: spin 2s linear infinite;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

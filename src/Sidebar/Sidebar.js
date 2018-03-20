@@ -66,7 +66,7 @@ class Sidebar extends Component {
       )
 
     return (
-      <Col xsHidden sm={3} className="Sidebar">
+      <Col sm={3} className="Sidebar">
         <Navbar>
           <Navbar.Header>
             <Navbar.Toggle/>

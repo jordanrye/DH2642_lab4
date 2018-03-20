@@ -100,7 +100,7 @@ class DishInfo extends Component {
     }
 
     return (
-      <Col sm={9} smOffset={3} className="DishInfo">
+      <Col xs={9} xsOffset={3} className="DishInfo">
           <Col sm={12} className="DishPanelWrapper">
             <Panel className="DishPanel">
               <Panel.Body>

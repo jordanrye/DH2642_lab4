@@ -44,12 +44,7 @@ class Overview extends Component {
         </div>
 
         <div className="container-fluid">
-          <Col xs={8}>
-            <Row className="results-panel">
-              {dishInfos}
-            </Row>
-          </Col>
-          <Col xs={4} className="text-center">
+          <Col smPush xs={12} sm={4} className="text-center">
             <div className="OverviewSummary">
               <h3 className="dinnerConfirmText">Dinner confirmation</h3>
               <p>Dinner for {this.state.numberOfGuests} people.</p>
@@ -59,6 +54,12 @@ class Overview extends Component {
               </Link>
             </div>
           </Col>
+          <Col xs={12} sm={8}>
+            <Row className="results-panel">
+              {dishInfos}
+            </Row>
+          </Col>
+
         </div>
       </Col>
     );
