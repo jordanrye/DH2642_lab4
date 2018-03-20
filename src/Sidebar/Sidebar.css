@@ -31,6 +31,9 @@
 .navbar-static-top .navbar-collapse {
 	height: calc(100vh - 20px) !important;
 }
+.sidebarSelected {
+	width: 100%;
+}
 .sidebarSelected table {
 	border-collapse: collapse;
 }

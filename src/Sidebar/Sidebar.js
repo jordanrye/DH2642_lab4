@@ -38,6 +38,21 @@ class Sidebar extends Component {
   // our handler for the input's on change event
   onNumberOfGuestsChanged = (e) => this.props.model.setNumberOfGuests(+e.target.value);
 
+  increaseValue() {
+    var value = parseInt(document.getElementById('totalNumberOfGuests').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('totalNumberOfGuests').value = value;
+  }
+
+  decreaseValue() {
+    var value = parseInt(document.getElementById('totalNumberOfGuests').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value < 1 ? value = 1 : '';
+    value--;
+    document.getElementById('totalNumberOfGuests').value = value;
+  }
+
   render() {
     let selectedDishesTable =
       this.state.selectedDishes.map((selectedDish) =>
@@ -62,18 +77,14 @@ class Sidebar extends Component {
             <hr/>
             <div>
             <table className="sidebarSelected">
-              <thead>
-                <tr className="hide-hr">
-                  <th>Dish Name</th>
-                  <th>Cost</th>
-                </tr>
-              </thead>
-              <tbody>
-                {selectedDishesTable}
-              </tbody>
+              <tr className="hide-hr">
+                <th>Dish Name</th>
+                <th>Cost</th>
+              </tr>
+              {selectedDishesTable}
             </table>
             <div className="sidebarTotalCost">
-              {this.state.totalMenuPrice}
+              SEK {this.state.totalMenuPrice}
             </div>
             </div>
             <hr/>
@@ -88,5 +99,12 @@ class Sidebar extends Component {
     );
   }
 }
+
+// <form>
+//   Number of guests:
+//   <div className="value-button" id="decrease" onClick={this.decreaseValue, this.onNumberOfGuestsChanged} value="Decrease Value">-</div>
+//   <input id="totalNumberOfGuests" value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
+//   <div className="value-button" id="increase" onClick={this.increaseValue, this.onNumberOfGuestsChanged} value="Increase Value">+</div>
+// </form>
 
 export default Sidebar;

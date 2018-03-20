@@ -9,6 +9,7 @@ html, body {
 	width: 100%;
 	height: 100%;
 	font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
 	color: #2F323E;
 	text-align: justify;
 	overflow-x: hidden;

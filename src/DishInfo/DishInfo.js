@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Panel } from 'react-bootstrap';
+import { Row, Col, Panel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { modelInstance } from '../data/DinnerModel';
 import './DishInfo.css';
@@ -60,45 +60,39 @@ class DishInfo extends Component {
         let ingredientsTable =
           this.state.dish.extendedIngredients.map((ingredient) =>
             <tr>
-                <td>{ingredient.amount} {ingredient.unit}</td>
-                <td>{ingredient.name}</td>
+              <td>{ingredient.amount} {ingredient.unit}</td>
+              <td>{ingredient.name}</td>
             </tr>
           )
 
         dishesList =
-          <div className="row">
-          <Col sm={6}>
-            <Panel>
-              <Panel.Body>
-      					<div className="main-top">
-                  <h3>{this.state.dish.title}</h3>
-                  <img src={this.state.dish.image} alt=""/>
-                  {this.state.dish.instructions}
-      					</div>
-              </Panel.Body>
-            </Panel>
+          <Row className="DishPanelWrapper">
+            <Col sm={6} className="DishInfoIngredients">
+              <Panel className="DishPanel">
+                <Panel.Body>
+                    <h3>{this.state.dish.title}</h3>
+                    <img src={this.state.dish.image} alt=""/>
+                    <p className="DishInfoDescription">{this.state.dish.instructions}</p>
+                </Panel.Body>
+              </Panel>
             </Col>
-            <Col sm={6}>
-            <Panel>
-              <Panel.Body>
-                <div className="notepad" style={style}>
-                  <table className="notepad-ingredients">
-                    <thead>
-                      <tr>
-                        <th colSpan="2">Shopping list...</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {ingredientsTable}
-                    </tbody>
-                  </table>
-                </div>
-                Ingredients for {this.state.numberOfGuests} people.
-                <br/>Total cost will be SEK {this.state.priceOfDish}.
-              </Panel.Body>
-            </Panel>
+            <Col sm={6} className="DishInfoIngredients">
+              <div className="notepad" style={style}>
+                <table className="notepad-ingredients">
+                  <thead>
+                    <tr>
+                      <th colSpan="2">Shopping list...</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {ingredientsTable}
+                  </tbody>
+                </table>
+              </div>
+              <span className="notepad-footer">Ingredients for {this.state.numberOfGuests} people.</span>
+              <span className="notepad-footer"><br/>Total cost will be SEK {this.state.priceOfDish}.</span>
             </Col>
-          </div>
+          </Row>
         break;
       default:
         dishesList = <b>Failed to load data, please try again.</b>
@@ -107,14 +101,16 @@ class DishInfo extends Component {
 
     return (
       <Col sm={9} smOffset={3} className="DishInfo">
-        <Panel>
-          <Panel.Body>
-            <Link to="/search">
-              <button className="btn btn-primary">Back To Search</button>
-            </Link>
-            <button className="btn btn-success pull-right" onClick={this.addDishToMenu} disabled={!this.state.loaded}>Add to menu (+)</button>
-          </Panel.Body>
-        </Panel>
+          <Col sm={12} className="DishPanelWrapper">
+            <Panel className="DishPanel">
+              <Panel.Body>
+                <Link to="/search">
+                  <button className="btn btn-primary">Back To Search</button>
+                </Link>
+                <button className="btn btn-success pull-right" onClick={this.addDishToMenu} disabled={!this.state.loaded}>Add to menu (+)</button>
+              </Panel.Body>
+            </Panel>
+          </Col>
         {dishesList}
       </Col>
     );
