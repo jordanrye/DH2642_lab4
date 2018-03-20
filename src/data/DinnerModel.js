@@ -7,7 +7,8 @@ const httpOptions = {
 
 const DinnerModel = function () {
   let numberOfGuests = localStorage.app_NumberOfGuests || 4;
-  var selectedDishes = JSON.parse(localStorage.app_SelectedDishes) || [];
+  if (localStorage.getItem("app_SelectedDishes") === null) var selectedDishes = [];
+  else var selectedDishes = JSON.parse(localStorage.app_SelectedDishes);
   var observers = [];
 
   // Conditions
@@ -66,6 +67,7 @@ const DinnerModel = function () {
   // on the menu it is removed from the menu and the new one added.
   this.addDishToMenu = (dish) => {
     selectedDishes.push(dish);
+    localStorage.setItem("app_SelectedDishes", JSON.stringify(selectedDishes));
     notifyObservers(this.DISH);
   }
 

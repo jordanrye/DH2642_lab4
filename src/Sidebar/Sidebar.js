@@ -14,11 +14,6 @@ class Sidebar extends Component {
       selectedDishes: this.props.model.getSelectedDishes(),
       totalMenuPrice: this.props.model.getTotalMenuPrice()
     };
-
-    this.state.numberOfGuests = localStorage.app_NumberOfGuests || this.state.numberOfGuests;
-    if (!!localStorage.app_SelectedDishes) {
-        this.state.selectedDishes = JSON.parse(localStorage.app_SelectedDishes);
-    }
   }
 
   // this methods is called by React lifecycle when the
