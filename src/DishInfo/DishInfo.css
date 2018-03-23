@@ -58,11 +58,12 @@
 	padding-left: 10px;
 }
 .notepad-footer {
-    padding-right: 2rem;
+    padding: 0 2rem 2rem 0;
 }
 .DishPanelWrapper {
     margin: 0px;
     padding: 0px;
+    /* z-index: 1000; */
 }
 .DishPanel {
 	padding: 2rem;
@@ -86,4 +87,9 @@
 	margin: 0px;
 	padding: 0px;
 	overflow: hidden;
+}
+.navbar-default .navbar-toggle {
+    border-color: #ddd;
+    position: fixed;
+    right: 2vh;
 }

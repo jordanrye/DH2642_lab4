@@ -1,9 +1,25 @@
-.Sidebar {
+.FauxContainer {
+	background-color: #FFF;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+	margin: 0;
+	padding: 0;
+}
+.FauxSidebar {
 	background-color: #FFF;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
 	height: 93vh;
 	position: fixed;
+	z-index: 9;
+	padding: 1rem 2rem;
+}
+.Sidebar {
+	/* background-color: #FFF; */
+	/* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+	height: 93vh; */
+	width: 100%;
+	position: absolute;
 	z-index: 10;
+	margin: 0;
 	padding: 2rem;
 }
 .navbar {
@@ -15,9 +31,19 @@
 	margin: 0;
 	padding: 0;
 }
+.container > .navbar-header {
+	margin-top: -76px;
+}
 .navbar > .container > .navbar-collapse {
-	margin: 0 -15px;
+	background-color: #FFF;
+	margin: -2rem;
+	margin-top: 7vh;
+	padding: 2rem;
 	overflow: visible;
+	border-bottom: 1px solid #eee;
+}
+.navbar-collapse {
+	max-height: 100%;
 }
 .navbar-toggle .icon-bar {
     background-color: black;
@@ -28,6 +54,9 @@
 }
 .navbar-collapse {
 	padding-bottom: 20px;
+}
+.navbar-default .navbar-collapse {
+	border: 0px solid #fff;
 }
 .navbar-static-top .navbar-collapse {
 	height: calc(100vh - 20px) !important;
@@ -59,4 +88,7 @@
 	text-align: right;
 	font-weight: bold;
 	padding: 5px;
+}
+.hiddenPaddingFix {
+	margin-top: calc(-7vh - 2rem);
 }

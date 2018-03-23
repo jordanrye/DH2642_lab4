@@ -63,12 +63,15 @@ class Sidebar extends Component {
       )
 
     return (
+    <Col sm={3} className="FauxContainer">
+      <Col xsHidden sm={3} className="FauxSidebar"></Col>
       <Col sm={3} className="Sidebar">
         <Navbar>
           <Navbar.Header>
             <Navbar.Toggle/>
           </Navbar.Header>
           <Navbar.Collapse>
+            <Col xsHidden className="hiddenPaddingFix"></Col>
             <h3>My dinner</h3>
             <div>
               People: <input value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
@@ -100,6 +103,7 @@ class Sidebar extends Component {
           </Navbar.Collapse>
         </Navbar>
       </Col>
+    </Col>
     );
   }
 }

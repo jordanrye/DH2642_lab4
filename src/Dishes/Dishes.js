@@ -78,7 +78,7 @@ class Dishes extends Component {
     }
 
     return (
-      <Col xs={9} xsOffset={3} className="Dishes" key="dishSearchKey">
+      <Col sm={9} smOffset={3} className="Dishes" key="dishSearchKey">
         <div className="SearchForm">
           <h3>Find a dish</h3>
           <Row>
