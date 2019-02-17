@@ -1,5 +1,7 @@
 # Dinner Planner
 
+![](https://i.imgur.com/oPPnamk.jpg)
+
 ## Getting started
 
 1. Check that you have `npm` installed on your system (you can follow the instructions
